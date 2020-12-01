@@ -1,0 +1,12 @@
+---
+tools_packages:
+- emacs
+- openldap-clients
+- openssl
+- pass
+- pwgen
+- rlwrap
+- tmux
+- tree
+- vim-enhanced
+- youtube-dl

@@ -1,0 +1,28 @@
+---
+- name: install packages
+  dnf:
+    name: '{{ desktop_packages }}'
+    state: present
+  become: yes
+  tags:
+  - desktop
+
+- name: update fontconfig
+  file:
+    path: /etc/fonts/conf.d/{{ item | basename }}
+    src: '{{ item }}'
+    owner: root
+    group: root
+    mode: 755
+    state: link
+  with_items: '{{ desktop_fontconfig }}'
+  tags:
+  - desktop
+  - fonts
+
+- name: update gsettings
+  command: gsettings set {{ item }}
+  with_items: '{{ desktop_gsettings }}'
+  become: no
+  tags:
+  - desktop

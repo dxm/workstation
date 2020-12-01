@@ -1,0 +1,11 @@
+---
+libvirt_packages:
+- '@virtualization'
+- python3-libvirt
+- python3-lxml
+- python3-netaddr
+#- '@virt' # centos?
+
+libvirt_pools:
+- name: media
+- name: images

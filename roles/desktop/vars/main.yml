@@ -1,0 +1,23 @@
+---
+desktop_packages:
+- chromium
+- firefox-wayland
+- gnome-shell-extension-pop-shell
+- gnome-tweak-tool
+- mozilla-https-everywhere
+- mozilla-noscript
+- mozilla-ublock-origin
+- xfreerdp
+
+desktop_fontconfig:
+- /usr/share/fontconfig/conf.avail/10-autohint.conf
+- /usr/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf
+- /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf
+
+desktop_gsettings:
+- org.gnome.settings-daemon.plugins.xsettings antialiasing rgba
+- org.gnome.settings-daemon.plugins.xsettings hinting slight
+#- org.gnome.desktop.interface text-scaling-factor 1.25
+- org.gnome.desktop.interface clock-format 12h
+- org.gnome.desktop.interface clock-show-date true
+- org.gnome.desktop.wm.keybindings switch-windows "['<Alt>Tab']"

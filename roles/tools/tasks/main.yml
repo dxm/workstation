@@ -1,0 +1,8 @@
+---
+- name: install packages
+  dnf:
+    name: '{{ tools_packages }}'
+    state: present
+  become: yes
+  tags:
+  - tools

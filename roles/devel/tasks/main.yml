@@ -1,0 +1,17 @@
+---
+- name: install packages
+  dnf:
+    name: '{{ devel_packages }}'
+    state: present
+  become: yes
+  tags:
+  - devel
+
+- name:  add users to mock group
+  user:
+    name: '{{ username }}'
+    groups: mock
+    append: yes
+  become: yes
+  tags:
+  - devel

@@ -1,0 +1,15 @@
+- name: setup workstation
+  hosts: localhost
+
+  pre_tasks:
+  - set_fact:
+     username: "{{ lookup('pipe', 'whoami') }}"
+    tags:
+    - always
+
+  roles:
+  - tools
+  - devel
+  - arduino
+  - desktop
+  - libvirt

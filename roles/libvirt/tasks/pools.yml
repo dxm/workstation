@@ -1,0 +1,71 @@
+---
+- name: setup pool folders
+  file:
+    path: '/var/lib/libvirt/{{ item.name }}'
+    owner: root
+    group: root
+    mode: 0711
+    state: directory
+  with_items: '{{ libvirt_pools }}'
+  become: yes
+  tags:
+  - libvirt
+
+- name:  check pool status
+  command: 'virsh pool-info {{ item.name }}'
+  with_items: '{{ libvirt_pools }}'
+  ignore_errors: True
+  changed_when: False
+  register: pool_status
+  become: yes
+  tags:
+  - libvirt
+
+- name: create temp directory
+  tempfile:
+    state: directory
+  changed_when: False
+  register: tempdir
+  become: yes
+  tags:
+  - libvirt
+
+- name: create xml file
+  template:
+    dest: '{{ tempdir.path }}/{{ item.item.name }}_pool.xml'
+    owner: root
+    group: root
+    mode: 0600
+    src: pool.xml
+  when: item is failed
+  with_items: '{{ pool_status.results }}'
+  become: yes
+  tags:
+  - libvirt
+
+- name: define pool
+  command: 'virsh pool-define {{ tempdir.path }}/{{ item.item.name }}_pool.xml'
+  when: item is failed
+  with_items: '{{ pool_status.results }}'
+  become: yes
+  tags:
+  - libvirt
+
+- name: start and set pool to autostart
+  command: 'virsh {{ item[1] }} {{ item[0].item.name }}'
+  when: item[0] is failed
+  with_nested:
+  - '{{ pool_status.results }}'
+  - [ 'pool-start', 'pool-autostart' ]
+  become: yes
+  tags:
+  - libvirt
+
+- name: remove temp directory
+  file:
+    path: '{{ tempdir.path }}'
+    state: absent
+  changed_when: False
+  become: yes
+  tags:
+  - libvirt
