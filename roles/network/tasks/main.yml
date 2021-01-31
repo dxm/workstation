@@ -1,0 +1,37 @@
+---
+- name: turn off systemd-resolved
+  service:
+    name: systemd-resolved
+    state: stopped
+    enabled: no
+  tags:
+  - network
+
+- name: check if resolv.conf is symlink
+  stat:
+    path: /etc/resolv.conf
+  register: st
+  tags:
+  - network
+
+- name: remove resolv.conf if symlink
+  file:
+    path: /etc/resolv.conf
+    state: absent
+  when: st.stat.islnk
+  tags:
+  - network
+
+- name: enable dnsmasq for NetworkManager
+  copy:
+    dest: /etc/NetworkManager/conf.d/dns.conf
+    owner: root
+    group: root
+    mode: 0644
+    content: |
+      [main]
+      dns=dnsmasq
+  notify:
+  - restart NetworkManager
+  tags:
+  - network
