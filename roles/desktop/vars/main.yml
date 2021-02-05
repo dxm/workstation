@@ -2,7 +2,7 @@
 desktop_packages:
 - chromium
 - firefox-wayland
-- gnome-shell-extension-pop-shell
+ #- gnome-shell-extension-pop-shell
 - gnome-tweak-tool
 - mozilla-https-everywhere
 - mozilla-noscript
