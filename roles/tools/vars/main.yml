@@ -1,6 +1,7 @@
 ---
 tools_packages:
 - emacs
+- nmap
 - openldap-clients
 - openssl
 - pass
