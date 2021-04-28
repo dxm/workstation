@@ -16,6 +16,7 @@
     mode: 755
     state: link
   with_items: '{{ desktop_fontconfig }}'
+  become: yes
   tags:
   - desktop
   - fonts

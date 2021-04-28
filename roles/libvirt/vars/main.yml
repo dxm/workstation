@@ -4,7 +4,8 @@ libvirt_packages:
 - python3-libvirt
 - python3-lxml
 - python3-netaddr
-#- '@virt' # centos?
+# Centos?
+#- '@virt'
 
 libvirt_pools:
 - name: media

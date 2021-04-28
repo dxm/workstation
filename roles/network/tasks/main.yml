@@ -4,21 +4,24 @@
     name: systemd-resolved
     state: stopped
     enabled: no
+  become: yes
   tags:
   - network
 
-- name: check if resolv.conf is symlink
+- name: check if resolv.conf is symlink (systemd)
   stat:
     path: /etc/resolv.conf
   register: st
+  become: yes
   tags:
   - network
 
-- name: remove resolv.conf if symlink
+- name: remove resolv.conf if symlink (systemd)
   file:
     path: /etc/resolv.conf
     state: absent
   when: st.stat.islnk
+  become: yes
   tags:
   - network
 
@@ -31,6 +34,7 @@
     content: |
       [main]
       dns=dnsmasq
+  become: yes
   notify:
   - restart NetworkManager
   tags:

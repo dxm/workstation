@@ -2,7 +2,8 @@
 desktop_packages:
 - chromium
 - firefox-wayland
- #- gnome-shell-extension-pop-shell
+# very cool, but changes gnome shortcut keys I am already familiar with
+#- gnome-shell-extension-pop-shell
 - gnome-tweak-tool
 - mozilla-https-everywhere
 - mozilla-noscript

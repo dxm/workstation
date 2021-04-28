@@ -3,3 +3,4 @@
   service:
     name: NetworkManager
     state: restarted
+  become: yes

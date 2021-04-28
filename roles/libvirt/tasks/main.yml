@@ -22,6 +22,7 @@
     name: libvirtd
     state: started
     enabled: yes
+  become: yes
   tags:
   - libvirt
 
