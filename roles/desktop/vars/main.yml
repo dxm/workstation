@@ -2,9 +2,9 @@
 desktop_packages:
 - chromium
 - firefox-wayland
-# very cool, but changes gnome shortcut keys I am already familiar with
 #- gnome-shell-extension-pop-shell
 - gnome-tweak-tool
+- gnome-extensions-app
 - mozilla-https-everywhere
 - mozilla-noscript
 - mozilla-ublock-origin
@@ -17,8 +17,10 @@ desktop_fontconfig:
 - /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf
 
 desktop_gsettings:
-- org.gnome.settings-daemon.plugins.xsettings antialiasing rgba
-- org.gnome.settings-daemon.plugins.xsettings hinting slight
+# doesn't work in fedora 34?
+#- org.gnome.settings-daemon.plugins.xsettings antialiasing rgba
+# doesn't work in fedora 34?
+#- org.gnome.settings-daemon.plugins.xsettings hinting slight
 #- org.gnome.desktop.interface text-scaling-factor 1.25
 - org.gnome.desktop.interface clock-format 12h
 - org.gnome.desktop.interface clock-show-date true

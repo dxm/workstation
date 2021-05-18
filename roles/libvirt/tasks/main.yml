@@ -1,5 +1,4 @@
 ---
-
 - name: install packages
   dnf:
     name: '{{ libvirt_packages }}'

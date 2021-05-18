@@ -1,3 +1,4 @@
+---
 - name: install packages
   dnf:
     name: '{{ arduino_packages }}'

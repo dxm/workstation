@@ -21,6 +21,7 @@
     path: /etc/resolv.conf
     state: absent
   when: st.stat.islnk
+  register: resolv
   become: yes
   tags:
   - network
@@ -34,8 +35,19 @@
     content: |
       [main]
       dns=dnsmasq
+  register: dnsmasq
   become: yes
-  notify:
-  - restart NetworkManager
+  tags:
+  - network
+
+# FIXME: race condition where symlink is gone and dns fails on next
+# play. We need to restart here if it has changed.
+#
+- name: restart network manager
+  service:
+    name: NetworkManager
+    state: restarted
+  when: resolv.changed or dnsmasq.changed
+  become: yes
   tags:
   - network

@@ -1,6 +1,6 @@
 ---
 tools_packages:
-- emacs
+#- emacs
 - nmap
 - openldap-clients
 - openssl
@@ -11,3 +11,4 @@ tools_packages:
 - tree
 - vim-enhanced
 - youtube-dl
+- zsh
