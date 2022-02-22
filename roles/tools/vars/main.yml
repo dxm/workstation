@@ -1,8 +1,9 @@
 ---
 tools_packages:
 #- emacs
+- htop
 - nmap
-- openldap-clients
+#- openldap-clients
 - openssl
 - pass
 - pwgen
@@ -11,4 +12,4 @@ tools_packages:
 - tree
 - vim-enhanced
 - youtube-dl
-- zsh
+#- zsh

@@ -1,0 +1,43 @@
+---
+# TODO: move details to vars/main.yml
+- name: import free gpg key
+  rpm_key:
+    state: present
+    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
+    fingerprint:  E9A491A3DE247814E7E067EAE06F8ECDD651FF2E
+  become: yes
+  tags:
+  - rpmfusion
+
+- name: install free rpm
+  package:
+    name: https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-34.noarch.rpm
+    state: present
+  become: yes
+  tags:
+  - rpmfusion
+
+- name: import non-free gpg key
+  rpm_key:
+    state: present
+    key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
+    fingerprint: 79BDB88F9BBF73910FD4095B6A2AF96194843C65
+  become: yes
+  tags:
+  - rpmfusion
+
+- name: install non-free rpm
+  package:
+    name: https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-34.noarch.rpm
+    state: present
+  become: yes
+  tags:
+  - rpmfusion
+
+- name: install codecs
+  package:
+    name: '{{ rpmfusion_packages }}'
+    state: present
+  become: yes
+  tags:
+  - rpmfusion
