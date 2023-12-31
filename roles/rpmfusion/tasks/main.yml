@@ -1,9 +1,4 @@
 ---
-
-- include_vars: "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_version'] }}.yml"
-  tags:
-  - rpmfusion
-
 - name: import gpg keys
   rpm_key:
     state: present
@@ -21,14 +16,6 @@
   with_items:
   - https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts['distribution_version'] }}.noarch.rpm
   - https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts['distribution_version'] }}.noarch.rpm
-  become: yes
-  tags:
-  - rpmfusion
-
-- name: install codecs
-  package:
-    name: '{{ rpmfusion_packages }}'
-    state: present
   become: yes
   tags:
   - rpmfusion

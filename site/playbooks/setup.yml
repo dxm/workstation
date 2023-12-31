@@ -10,8 +10,7 @@
   roles:
   - tools
   - devel
-  #- arduino
   - desktop
   - network
   - rpmfusion
-  - libvirt
+  #- libvirt

@@ -10,7 +10,6 @@ devel_packages:
 - libxml2-devel
 - libxslt-devel
 - make
-- mercurial
 - mock
 - ncurses-devel
 - openldap-devel
@@ -20,6 +19,5 @@ devel_packages:
 - readline-devel
 - rpmdevtools
 - sqlite-devel
-- subversion
 - xz-libs
 - zlib-devel

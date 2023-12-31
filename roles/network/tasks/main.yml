@@ -48,6 +48,14 @@
     name: NetworkManager
     state: restarted
   when: resolv.changed or dnsmasq.changed
+  register: networkmanager
   become: yes
+  tags:
+  - network
+
+- name: pause if networkmanager is restarted
+  ansible.builtin.pause:
+    seconds: 10
+  when: networkmanager.changed
   tags:
   - network
