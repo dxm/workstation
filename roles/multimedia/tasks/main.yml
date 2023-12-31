@@ -1,0 +1,10 @@
+---
+- name: install packages
+  package:
+    name: '{{ multimedia_packages }}'
+    state: present
+    allowerasing: true
+    exclude: gstreamer1-plugins-bad-free-devel
+  become: yes
+  tags:
+  - multimedia

@@ -1,0 +1,12 @@
+---
+rpmfusion_keys:
+- key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-free-fedora-2020
+  fingerprint: E9A491A3DE247814E7E067EAE06F8ECDD651FF2E
+- key: https://rpmfusion.org/keys?action=AttachFile&do=get&target=RPM-GPG-KEY-rpmfusion-nonfree-fedora-2020
+  fingerprint: 79BDB88F9BBF73910FD4095B6A2AF96194843C65
+
+rpmfusion_packages:
+- 'gstreamer1-plugins-bad-*'
+- 'gstreamer1-plugins-good-*'
+- 'gstreamer1-plugins-base-*'
+- ffmpeg
