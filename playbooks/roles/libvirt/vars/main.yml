@@ -1,0 +1,10 @@
+---
+
+libvirt_packages:
+- guestfs-tools
+- python3-libvirt
+- python3-lxml
+- virt-install
+- virt-manager
+- virt-top
+- virt-viewer

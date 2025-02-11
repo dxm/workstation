@@ -1,0 +1,30 @@
+---
+
+- name: import gpg keys
+  ansible.builtin.rpm_key:
+    state: present
+    key: "{{ item.key }}"
+    fingerprint: "{{ item.fingerprint }}"
+  with_items: "{{ rpmfusion_keys }}"
+  become: true
+  tags:
+  - rpmfusion
+
+- name: install release rpms
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ rpmfusion_release }}"
+  become: true
+  tags:
+  - rpmfusion
+
+- name: install packages
+  ansible.builtin.package:
+    name: "{{ rpmfusion_packages }}"
+    state: present
+    allowerasing: true
+    exclude: gstreamer1-plugins-bad-free-devel
+  become: true
+  tags:
+  - rpmfusion

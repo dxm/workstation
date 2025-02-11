@@ -1,0 +1,28 @@
+---
+
+- name: setup workstation
+  hosts:
+  - localhost
+  connection: local
+  become: false
+  gather_facts: true
+  vars:
+    fedora_keys:
+      "40": "115D F9AE F857 853E E844 5D0A 0727 707E A15B 79CC"
+      "41": "466C F2D8 B60B C305 7AA9 453E D062 2462 E99D 6AD1"
+
+  pre_tasks:
+  - ansible.builtin.set_fact:
+     username: "{{ lookup('pipe', 'whoami') }}"
+     release: "{{ ansible_facts['distribution_major_version'] }}"
+    tags:
+    - always
+
+  - ansible.builtin.rpm_key:
+      key: "/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-{{ release }}-primary"
+      fingerprint: "{{ fedora_keys[release] }}"
+
+  roles:
+  - tools
+  - desktop
+  - libvirt

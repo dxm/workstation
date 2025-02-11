@@ -1,0 +1,23 @@
+---
+
+# python3-psutil is needed for community.general.dconf
+
+desktop_packages:
+- dejavu-fonts-all 
+- gstreamer1-plugin-openh264
+- mozilla-openh264 
+- mozilla-ublock-origin
+- mupdf
+- mypaint
+- python3-psutil
+- wl-clipboard
+
+desktop_gsettings:
+- key: /org/gnome/settings-daemon/plugins/power/ambient-enabled
+  value: false
+- key: /org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type
+  value: "'nothing'"
+- key: /org/gnome/desktop/interface/show-battery-percentage
+  value: false
+- key: /org/gnome/desktop/privacy/remember-recent-files
+  value: false

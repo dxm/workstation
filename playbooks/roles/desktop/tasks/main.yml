@@ -1,0 +1,19 @@
+---
+
+- name: install packages
+  ansible.builtin.package:
+    name: "{{ desktop_packages }}"
+    state: present
+  become: true
+  tags:
+  - desktop
+
+- name: update gsettings
+  community.general.dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+    state: present
+  loop: "{{ desktop_gsettings }}"
+  become: false
+  tags:
+  - desktop

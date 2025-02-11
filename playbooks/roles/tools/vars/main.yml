@@ -1,0 +1,21 @@
+---
+
+tools_packages:
+- busybox
+- discount
+- dnf-utils
+- entr
+- htop
+- make
+- nmap
+- openssl
+- p7zip
+- pwgen
+- rlwrap
+- smartmontools
+- sqlite3
+- tmux
+- tree
+- unrar
+- vim-enhanced
+- yt-dlp
