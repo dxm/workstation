@@ -1,5 +1,7 @@
 ---
 
+# python3-libvirt and python3-lxml is needed by libvirt modules
+
 libvirt_packages:
 - guestfs-tools
 - python3-libvirt

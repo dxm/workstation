@@ -16,3 +16,70 @@
   become: yes
   tags:
   - libvirt
+
+- name: define storage pool
+  community.libvirt.virt_pool:
+    name: default
+    command: define
+    xml: "{{ lookup('file', 'files/pool.xml') }}"
+  register: libvirt_pool
+  tags:
+  - libvirt
+
+- name: build storage pool
+  community.libvirt.virt_pool:
+    name: default
+    command: build
+  when: libvirt_pool is changed
+  tags:
+  - libvirt
+
+- name: start and autostart storage pool
+  community.libvirt.virt_pool:
+    name: default
+    state: active
+    autostart: true
+  tags:
+  - libvirt
+
+- name: check network facts
+  community.libvirt.virt_net:
+    command: facts
+
+- block:
+
+  - name: stop network
+    community.libvirt.virt_net:
+      name: default
+      state: inactive
+    when: "'domain' not in ansible_libvirt_networks['default'] or (
+      'domain' in ansible_libvirt_networks['default'] and
+      ansible_libvirt_networks['default']['domain'] != 'virtual.example')"
+    register: libvirt_network
+
+  - name: undefine network
+    community.libvirt.virt_net:
+      name: default
+      command: undefine
+    when: libvirt_network is changed
+
+  when: 
+  - '"default" in ansible_libvirt_networks'
+  tags:
+  - libvirt
+
+- name: define network
+  community.libvirt.virt_net:
+    name: default
+    command: define
+    xml: '{{ lookup("file", "files/network.xml") }}'
+  tags:
+  - libvirt
+
+- name: start and autostart network
+  community.libvirt.virt_net:
+    name: default
+    state: active
+    autostart: true
+  tags:
+  - libvirt

@@ -1,17 +1,40 @@
 # Readme
 
-## Install
+## Dependencies
 
 ```
 # dependencies:
-sudo dnf install ansible-core ansible-collection-community-general
-# or
-ansible-galaxy role install -r requirements.yml
+sudo dnf install ansible-core ansible-collection-community-general ansible-collection-community-libvirt
+```
 
-# setup
+Notes: 
+
+- community.general.dnf
+    - python3-gobject-base provides gi.repository
+- community.libvirt
+    - python3-lxml
+
+# Run
+
+```
 ansible-playbook  -bK playbooks/setup.yml
 ```
 
-## Dependency Notes
 
-- python3-gobject-base provides gi.repository
+# DNS
+
+Per man page of systemd-resolve:
+
+```
+/etc/systemd/resolved.conf.d/
+[Resolve]
+DNS=192.168.124.1
+Domains=~virtual.example
+```
+
+# XML tricks
+
+```
+virsh net-dumpxml default | xmllint --xpath 'string(//domain/@name)' -
+virtual.example
+```

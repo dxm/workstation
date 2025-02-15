@@ -1,4 +1,0 @@
----
-
-- name: community.general.dconf
-  version: ">10.3.1"
